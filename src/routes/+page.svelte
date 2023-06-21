@@ -98,7 +98,7 @@
 <div>
 	<button on:click={addLink}>Add Link</button>
 	<button on:click={addColumn}>Add Column</button>
-	<Sankey>
+	<Sankey showHeaders>
 		{#each sankeyData.data as data}
 			<ColumnHeader>
 				<div style="font-size: clamp(1.125rem, 2vw, 1.5rem); font-weight: bold; margin-block: 1rem">
@@ -119,9 +119,9 @@
 		{#each sankeyData.links as data}
 			<Link {data} />
 		{/each}
-		{#each Array.from($linksStore) as link}
+		<!-- {#each Array.from($linksStore) as link}
 			<div>{JSON.stringify(link)}</div>
-		{/each}
+		{/each} -->
 		<!-- {#each Array.from($dataStore) as data}
 			<div>{JSON.stringify(data)}</div>
 		{/each} -->
