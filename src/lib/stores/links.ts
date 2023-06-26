@@ -1,4 +1,4 @@
-import type { SankeyLink } from '$lib/types/index.ts';
+import type { SankeyLink } from '$types';
 import { writable } from 'svelte/store';
 
 export type LinksStore = Map<string, SankeyLink>;

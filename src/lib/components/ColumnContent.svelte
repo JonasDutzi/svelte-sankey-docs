@@ -1,18 +1,16 @@
 <script lang="ts">
-	import { dataStore } from '$lib/stores/data.ts';
-	import type { SankeyColumn } from '$lib/types/index.ts';
+	import { dataStore } from '$stores';
+	import type { SankeyColumn } from '$types';
 	import { onDestroy, onMount } from 'svelte';
 
 	export let data: SankeyColumn;
 
 	onMount(() => {
 		dataStore.addColumn(data);
-		console.log($dataStore);
 	});
 
 	onDestroy(() => {
 		dataStore.removeColumn(data);
-		console.log($dataStore);
 	});
 </script>
 

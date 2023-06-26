@@ -1,7 +1,7 @@
-import type { SankeyColumn } from '$lib/types/index.ts';
+import type { SankeyColumn, SankeyKey } from '$types';
 import { writable } from 'svelte/store';
 
-type DataStore = Map<string | number, SankeyColumn>;
+type DataStore = Map<SankeyKey, SankeyColumn>;
 
 const createDataStore = () => {
 	const { subscribe, update } = writable<DataStore>(new Map());

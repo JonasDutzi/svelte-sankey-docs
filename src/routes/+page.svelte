@@ -3,11 +3,9 @@
 	import Sankey from '$lib/components/Sankey.svelte';
 	import ColumnHeader from '$lib/components/ColumnHeader.svelte';
 	import ColumnContent from '$lib/components/ColumnContent.svelte';
-	import type { SankeyData } from '$lib/types/index.ts';
-	import Label from '$lib/components/Label.svelte';
+	import type { SankeyData } from '$types';
 	import Link from '$lib/components/Link.svelte';
-	import { linksStore } from '$lib/stores/links.ts';
-	import { dataStore } from '$lib/stores/data.ts';
+	import { anchorsStore, linksStore, dataStore, pathsStore } from '$stores';
 
 	let sankeyData: SankeyData = {
 		data: [
@@ -18,8 +16,8 @@
 					{
 						rowLabel: 'Product',
 						items: [
-							{ id: 'fluor', label: 'Fluor' },
-							{ id: 'biscuit', label: 'Biscuit' }
+							{ id: 'fluor', receiverId: 'semi_finished_good', label: 'Fluor', value: 3 },
+							{ id: 'biscuit', receiverId: 'semi_finished_good', label: 'Biscuit', value: 6 }
 						]
 					},
 					{
@@ -51,19 +49,24 @@
 		],
 		links: [
 			{
-				source: '1',
-				target: '2',
+				source: 'fluor',
+				target: 'semi_finished_good',
 				value: 5
 			},
 			{
-				source: '2',
-				target: '3',
+				source: 'biscuit',
+				target: 'semi_finished_good',
 				value: 3
 			},
 			{
-				source: '3',
-				target: '4',
-				value: 3
+				source: 'chocolate_production',
+				target: 'semi_finished_good',
+				value: 8
+			},
+			{
+				source: 'semi_finished_good',
+				target: 'cake',
+				value: 16
 			}
 		]
 	};
@@ -119,13 +122,35 @@
 		{#each sankeyData.links as data}
 			<Link {data} />
 		{/each}
-		<!-- {#each Array.from($linksStore) as link}
-			<div>{JSON.stringify(link)}</div>
-		{/each} -->
-		<!-- {#each Array.from($dataStore) as data}
-			<div>{JSON.stringify(data)}</div>
-		{/each} -->
 	</Sankey>
+	<div class="inspector">
+		<b>State Inspector:</b>
+		<div>
+			<b>Links:</b>
+			{#each Array.from($linksStore) as link}
+				<div>{JSON.stringify(link)}</div>
+			{/each}
+		</div>
+		<div>
+			<b>Data:</b>
+			{#each Array.from($dataStore) as data}
+				<div>{JSON.stringify(data)}</div>
+			{/each}
+		</div>
+		<div>
+			<b>Anchors:</b>
+			{#each Array.from($anchorsStore) as data}
+				<div>{JSON.stringify(data)}</div>
+			{/each}
+		</div>
+		<div>
+			<b>Paths:</b>
+			<!-- <p>{$pathsStore}</p> -->
+			{#each Array.from($pathsStore) as data}
+				<div>{JSON.stringify(data)}</div>
+			{/each}
+		</div>
+	</div>
 </div>
 
 <style>
@@ -133,5 +158,11 @@
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
+	}
+	.inspector {
+		margin-top: 8rem;
+	}
+	.inspector > div {
+		margin: 2rem;
 	}
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { SankeyItem } from '$lib/types/index.ts';
+	import type { SankeyItem } from '$types';
 	import Anchor from './Anchor.svelte';
 	import Label from './Label.svelte';
 
@@ -7,7 +7,7 @@
 </script>
 
 <div class="sv-sankey__item">
-	<Anchor label={item.label} />
+	<Anchor id={item.id} value={item.value} />
 	<Label label={item.label} />
 	<slot />
 </div>

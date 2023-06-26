@@ -4,7 +4,7 @@ export type SankeyData = {
 };
 
 export type SankeyColumn = {
-	id: string | number;
+	id: SankeyKey;
 	columnLabel?: string;
 	rows: Array<SankeyRow>;
 };
@@ -15,12 +15,16 @@ export type SankeyRow = {
 };
 
 export type SankeyItem = {
-	id: string | number;
+	id: SankeyKey;
+	receiverId?: SankeyKey;
 	label: string;
+	value?: number;
 };
 
 export type SankeyLink = {
-	source: string | number;
-	target: string | number;
+	source: SankeyKey;
+	target: SankeyKey;
 	value?: number;
 };
+
+export type SankeyKey = string | number;
