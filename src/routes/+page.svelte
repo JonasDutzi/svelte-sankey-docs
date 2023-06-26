@@ -1,11 +1,11 @@
 <script lang="ts">
 	import Item from '$lib/components/Item.svelte';
-	import Sankey from '$lib/components/Sankey.svelte';
 	import ColumnHeader from '$lib/components/ColumnHeader.svelte';
 	import ColumnContent from '$lib/components/ColumnContent.svelte';
 	import type { SankeyData } from '$types';
 	import Link from '$lib/components/Link.svelte';
 	import { anchorsStore, linksStore, dataStore, pathsStore } from '$stores';
+	import Sankey from '$lib/components/Sankey.svelte';
 
 	let sankeyData: SankeyData = {
 		data: [

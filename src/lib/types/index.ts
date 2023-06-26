@@ -1,30 +1,32 @@
-export type SankeyData = {
+type SankeyData = {
 	data: Array<SankeyColumn>;
 	links: Array<SankeyLink>;
 };
 
-export type SankeyColumn = {
+type SankeyColumn = {
 	id: SankeyKey;
 	columnLabel?: string;
 	rows: Array<SankeyRow>;
 };
 
-export type SankeyRow = {
+type SankeyRow = {
 	rowLabel?: string;
 	items: Array<SankeyItem>;
 };
 
-export type SankeyItem = {
+type SankeyItem = {
 	id: SankeyKey;
 	receiverId?: SankeyKey;
 	label: string;
 	value?: number;
 };
 
-export type SankeyLink = {
+type SankeyLink = {
 	source: SankeyKey;
 	target: SankeyKey;
 	value?: number;
 };
 
-export type SankeyKey = string | number;
+type SankeyKey = string | number;
+
+export type { SankeyData, SankeyColumn, SankeyItem, SankeyKey, SankeyLink, SankeyRow };
