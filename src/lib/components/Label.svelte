@@ -13,7 +13,5 @@
 		content: '';
 		position: absolute;
 		inset: 0;
-		background-color: black;
-		opacity: 0.05;
 	}
 </style>

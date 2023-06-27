@@ -3,12 +3,11 @@
 
 	export let showHeaders: boolean = false;
 
-	let contentRect: DOMRectReadOnly;
-	let wrapperRef: any;
-	let test: any;
+	let wrapperRef: HTMLDivElement;
+	export let pathWidth: number = 3;
 
 	$: {
-		if (contentRect) {
+		if (wrapperRef) {
 			const wrapperRect = wrapperRef?.getBoundingClientRect();
 			$wrapperStore.width = wrapperRect.width;
 			$wrapperStore.height = wrapperRect.height;
@@ -22,14 +21,13 @@
 	bind:this={wrapperRef}
 	bind:clientWidth={$wrapperStore.width}
 	bind:clientHeight={$wrapperStore.height}
-	bind:contentRect
 	style:--grid-auto-flow={showHeaders ? 'row' : 'column'}
 	class="sv-sankey__wrapper"
 >
 	<svg width={$wrapperStore.width} height={$wrapperStore.height}>
 		{#each Array.from($pathsStore) as [pathKey, pathData]}
 			<line
-				style="stroke:rgb(255,0,0);stroke-width:2"
+				style:--path-width={pathWidth}
 				x1={pathData.sourcePosition.x ?? 0 - $wrapperStore.left}
 				y1={pathData.sourcePosition.y ?? 0 + $wrapperStore.top}
 				x2={pathData.targetPosition.x ?? 0 - $wrapperStore.left}
@@ -57,5 +55,9 @@
 	}
 	svg {
 		position: absolute;
+	}
+	line {
+		stroke: rgb(0, 255, 255);
+		stroke-width: var(--path-width);
 	}
 </style>
