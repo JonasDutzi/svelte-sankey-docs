@@ -11,8 +11,11 @@
 		(() => {
 			if (anchorRef) {
 				const rect = anchorRef.getBoundingClientRect();
-				console.log(id + JSON.stringify(rect));
-				anchorsStore.setAnchor({ id: id, positionX: rect.x, positionY: rect.y });
+				anchorsStore.setAnchor({
+					id: id,
+					positionX: rect.x - $wrapperStore.left,
+					positionY: rect.y - $wrapperStore.top
+				});
 			}
 		})();
 

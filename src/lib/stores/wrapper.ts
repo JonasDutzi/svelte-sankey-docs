@@ -1,5 +1,10 @@
 import { writable } from 'svelte/store';
 
-export type WrapperStore = { wrapperWidth?: number; wrapperHeight?: number };
+export type WrapperStore = {
+	height: number | undefined;
+	width: number | undefined;
+	x: number | undefined;
+	y: number | undefined;
+};
 
-export const wrapperStore = writable<WrapperStore>({});
+export const wrapperStore = writable<Record<any, any>>({});

@@ -4,30 +4,36 @@
 	export let showHeaders: boolean = false;
 
 	let contentRect: DOMRectReadOnly;
+	let wrapperRef: any;
+	let test: any;
 
 	$: {
 		if (contentRect) {
-			$wrapperStore.wrapperWidth = contentRect.width;
-			$wrapperStore.wrapperHeight = contentRect.height;
+			const wrapperRect = wrapperRef?.getBoundingClientRect();
+			$wrapperStore.width = wrapperRect.width;
+			$wrapperStore.height = wrapperRect.height;
+			$wrapperStore.top = wrapperRect.top;
+			$wrapperStore.left = wrapperRect.left;
 		}
 	}
 </script>
 
 <div
-	bind:clientWidth={$wrapperStore.wrapperWidth}
-	bind:clientHeight={$wrapperStore.wrapperHeight}
+	bind:this={wrapperRef}
+	bind:clientWidth={$wrapperStore.width}
+	bind:clientHeight={$wrapperStore.height}
 	bind:contentRect
 	style:--grid-auto-flow={showHeaders ? 'row' : 'column'}
 	class="sv-sankey__wrapper"
 >
-	<svg width={$wrapperStore.wrapperWidth} height={$wrapperStore.wrapperHeight}>
+	<svg width={$wrapperStore.width} height={$wrapperStore.height}>
 		{#each Array.from($pathsStore) as [pathKey, pathData]}
 			<line
 				style="stroke:rgb(255,0,0);stroke-width:2"
-				x1={pathData.sourcePosition.x}
-				y1={pathData.sourcePosition.y}
-				x2={pathData.targetPosition.x}
-				y2={pathData.targetPosition.y}
+				x1={pathData.sourcePosition.x ?? 0 - $wrapperStore.left}
+				y1={pathData.sourcePosition.y ?? 0 + $wrapperStore.top}
+				x2={pathData.targetPosition.x ?? 0 - $wrapperStore.left}
+				y2={pathData.targetPosition.y ?? 0 + $wrapperStore.top}
 			/>
 		{/each}
 	</svg>

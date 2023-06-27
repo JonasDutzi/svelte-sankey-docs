@@ -4,7 +4,7 @@
 	import ColumnContent from '$lib/components/ColumnContent.svelte';
 	import type { SankeyData } from '$types';
 	import Link from '$lib/components/Link.svelte';
-	import { anchorsStore, linksStore, dataStore, pathsStore } from '$stores';
+	import { anchorsStore, linksStore, dataStore, pathsStore, wrapperStore } from '$stores';
 	import Sankey from '$lib/components/Sankey.svelte';
 
 	let sankeyData: SankeyData = {
@@ -149,6 +149,10 @@
 			{#each Array.from($pathsStore) as data}
 				<div>{JSON.stringify(data)}</div>
 			{/each}
+		</div>
+		<div>
+			<b>Wrapper:</b>
+			<div>{JSON.stringify($wrapperStore)}</div>
 		</div>
 	</div>
 </div>
