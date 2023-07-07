@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { itemsStore } from '$lib/stores/items.ts';
 	import { anchorsStore, linksStore, dataStore, pathsStore, wrapperStore } from '$stores';
 </script>
 
@@ -13,6 +14,12 @@
 	<div>
 		<b>Data:</b>
 		{#each Array.from($dataStore) as data}
+			<div>{JSON.stringify(data)}</div>
+		{/each}
+	</div>
+	<div>
+		<b>Items:</b>
+		{#each Array.from($itemsStore) as data}
 			<div>{JSON.stringify(data)}</div>
 		{/each}
 	</div>
