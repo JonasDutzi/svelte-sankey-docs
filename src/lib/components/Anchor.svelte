@@ -7,17 +7,16 @@
 	export let id: SankeyKey;
 	export let value: number | undefined;
 
-	$: $wrapperStore,
-		(() => {
-			if (anchorRef) {
-				const rect = anchorRef.getBoundingClientRect();
-				anchorsStore.setAnchor({
-					id: id,
-					positionX: rect.x - $wrapperStore.left,
-					positionY: rect.y - $wrapperStore.top
-				});
-			}
-		})();
+	$: {
+		if (anchorRef) {
+			const rect = anchorRef.getBoundingClientRect();
+			anchorsStore.setAnchor({
+				id: id,
+				positionX: rect.x - $wrapperStore.left,
+				positionY: rect.y - $wrapperStore.top
+			});
+		}
+	}
 
 	onDestroy(() => {
 		anchorsStore.remove(id);
