@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { pathsStore, wrapperStore } from '$lib/stores/index.ts';
+	import { linksStore, pathsStore, wrapperStore } from '$lib/stores/index.ts';
 
 	export let showHeaders: boolean = false;
 
 	let wrapperRef: HTMLDivElement;
-	export let pathWidth: number = 3;
+	export let minPathWidth: number = 1;
 
 	$: {
 		if (wrapperRef) {
@@ -15,6 +15,15 @@
 			$wrapperStore.left = wrapperRect.left;
 		}
 	}
+
+	const calculatePathWidth = (pathKey: string) => {
+		const linkData = $linksStore.get(pathKey);
+		console.log(linkData?.value);
+		if (linkData?.value! > minPathWidth) {
+			return linkData?.value;
+		}
+		return minPathWidth;
+	};
 </script>
 
 <div
@@ -27,7 +36,7 @@
 	<svg width={$wrapperStore.width} height={$wrapperStore.height}>
 		{#each Array.from($pathsStore) as [pathKey, pathData]}
 			<line
-				style:--path-width={pathWidth}
+				style:--path-width={calculatePathWidth(pathKey)}
 				x1={pathData.sourcePosition.x ?? 0 - $wrapperStore.left}
 				y1={pathData.sourcePosition.y ?? 0 + $wrapperStore.top}
 				x2={pathData.targetPosition.x ?? 0 - $wrapperStore.left}

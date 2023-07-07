@@ -24,7 +24,7 @@
 	});
 </script>
 
-<div style="height: {value ? value * 2 : 2}px;" bind:this={anchorRef} />
+<div style="height: {value ?? 1}px;" bind:this={anchorRef} />
 
 <style>
 	div {

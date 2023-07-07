@@ -8,7 +8,7 @@ const createLinksStore = () => {
 	return {
 		subscribe,
 		add: (newLink: SankeyLink) =>
-			update((currentLinks) => currentLinks.set(`${newLink.source}/${newLink.target}}`, newLink)),
+			update((currentLinks) => currentLinks.set(`${newLink.source}/${newLink.target}`, newLink)),
 		remove: (link: SankeyLink) =>
 			update((currentLinks) => {
 				currentLinks.delete(`${link.source}/${link.target}`);
