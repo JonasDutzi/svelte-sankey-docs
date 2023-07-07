@@ -7,7 +7,7 @@
 </script>
 
 <div class="sv-sankey__item">
-	<Anchor id={item.id} value={item.value} />
+	<Anchor id={item.id} />
 	<Label label={item.label} />
 	<slot />
 </div>

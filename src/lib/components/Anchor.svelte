@@ -5,7 +5,6 @@
 
 	let anchorRef: HTMLDivElement;
 	export let id: SankeyKey;
-	export let value: number | undefined;
 
 	$: {
 		if (anchorRef) {
@@ -23,7 +22,7 @@
 	});
 </script>
 
-<div style="height: {value ?? 1}px;" bind:this={anchorRef} />
+<div style="height: {1}px;" bind:this={anchorRef} />
 
 <style>
 	div {

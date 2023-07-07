@@ -16,15 +16,13 @@ type SankeyRow = {
 
 type SankeyItem = {
 	id: SankeyKey;
-	receiverId?: SankeyKey;
 	label: string;
-	value?: number;
 };
 
 type SankeyLink = {
 	source: SankeyKey;
 	target: SankeyKey;
-	value?: number;
+	value: number;
 };
 
 type SankeyKey = string | number;

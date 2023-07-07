@@ -18,7 +18,6 @@
 
 	const calculatePathWidth = (pathKey: string) => {
 		const linkData = $linksStore.get(pathKey);
-		console.log(linkData?.value);
 		if (linkData?.value! > minPathWidth) {
 			return linkData?.value;
 		}
@@ -33,7 +32,7 @@
 	style:--grid-auto-flow={showHeaders ? 'row' : 'column'}
 	class="sv-sankey__wrapper"
 >
-	<svg width={$wrapperStore.width} height={$wrapperStore.height}>
+	<!-- <svg width={$wrapperStore.width} height={$wrapperStore.height}>
 		{#each Array.from($pathsStore) as [pathKey, pathData]}
 			<line
 				style:--path-width={calculatePathWidth(pathKey)}
@@ -43,7 +42,7 @@
 				y2={pathData.targetPosition.y ?? 0 + $wrapperStore.top}
 			/>
 		{/each}
-	</svg>
+	</svg> -->
 	<slot />
 </div>
 
