@@ -27,4 +27,9 @@ type SankeyLink = {
 
 type SankeyKey = string | number;
 
+export enum Axis {
+	x = 'x',
+	y = 'y'
+}
+
 export type { SankeyData, SankeyColumn, SankeyItem, SankeyKey, SankeyLink, SankeyRow };

@@ -1,10 +1,20 @@
 <script lang="ts">
 	import { linksStore, pathsStore, wrapperStore } from '$lib/stores/index.ts';
+    import { Axis } from "$types";
 
 	export let showHeaders: boolean = false;
 
 	let wrapperRef: HTMLDivElement;
 	export let minPathWidth: number = 1;
+
+    const getPosition = (value: number, axis: Axis) => {
+        if (axis === Axis.x) {
+            return value ?? 0 - $wrapperStore.left;
+        }
+        if (axis === Axis.y) {
+            return value ?? 0 + $wrapperStore.top;
+        }
+    }
 
 	$: {
 		if (wrapperRef) {
@@ -32,17 +42,18 @@
 	style:--grid-auto-flow={showHeaders ? 'row' : 'column'}
 	class="sv-sankey__wrapper"
 >
-	<!-- <svg width={$wrapperStore.width} height={$wrapperStore.height}>
+	<svg width={$wrapperStore.width} height={$wrapperStore.height}>
 		{#each Array.from($pathsStore) as [pathKey, pathData]}
+            {@const pathWidth = calculatePathWidth(pathKey)}
 			<line
-				style:--path-width={calculatePathWidth(pathKey)}
-				x1={pathData.sourcePosition.x ?? 0 - $wrapperStore.left}
-				y1={pathData.sourcePosition.y ?? 0 + $wrapperStore.top}
-				x2={pathData.targetPosition.x ?? 0 - $wrapperStore.left}
-				y2={pathData.targetPosition.y ?? 0 + $wrapperStore.top}
+				style:--path-width={pathWidth}
+				x1={getPosition(pathData.sourcePosition.x, Axis.x)}
+				y1={getPosition(pathData.sourcePosition.y, Axis.y)}
+				x2={getPosition(pathData.targetPosition.x, Axis.x)}
+				y2={getPosition(pathData.targetPosition.y, Axis.y)}
 			/>
 		{/each}
-	</svg> -->
+	</svg>
 	<slot />
 </div>
 
