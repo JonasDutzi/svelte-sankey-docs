@@ -2,20 +2,18 @@
 	import type { SankeyKey } from '$types';
 	import { onDestroy } from 'svelte';
 	import { anchorsStore, wrapperStore, itemsStore } from '$stores';
-	import type { SankeyEdge } from '$lib/stores/items.ts';
 
 	let anchorRef: HTMLDivElement;
 	export let id: SankeyKey;
-    
-    
-    let anchorHeight = 1;
-    
-    $: {
-        let item = $itemsStore.get(id);
-        if (item) {
-            anchorHeight = item.sourcesTotalValue > 0 ? item.sourcesTotalValue : item.targetsTotalValue
-        }
-    }
+
+	let anchorHeight = 1;
+
+	$: {
+		let item = $itemsStore.get(id);
+		if (item) {
+			anchorHeight = item.sourcesTotalValue > 0 ? item.sourcesTotalValue : item.targetsTotalValue;
+		}
+	}
 
 	$: {
 		if (anchorRef) {
@@ -37,8 +35,9 @@
 
 <style>
 	div {
+		z-index: 1;
 		width: 15px;
-		background-color: aqua;
+		background-color: darkblue;
 		height: var(--anchor-height);
 	}
 </style>
