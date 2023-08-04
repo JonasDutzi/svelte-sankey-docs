@@ -35,7 +35,10 @@ export const sankeyData: SankeyData = {
 			rows: [
 				{
 					rowLabel: 'Product',
-					items: [{ id: 'cake', label: 'Cake' }]
+					items: [
+						{ id: 'strawberrycake', label: 'Strawberry Cake' },
+						{ id: 'chococake', label: 'Chocolate Cake' }
+					]
 				}
 			]
 		}
@@ -58,8 +61,13 @@ export const sankeyData: SankeyData = {
 		},
 		{
 			source: 'semi_finished_good',
-			target: 'cake',
-			value: 16
+			target: 'strawberrycake',
+			value: 8
+		},
+		{
+			source: 'semi_finished_good',
+			target: 'chococake',
+			value: 8
 		}
 	]
 };

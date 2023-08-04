@@ -15,7 +15,7 @@
 <style>
 	:global(.sv-sankey__item) {
 		display: flex;
-		align-items: flex-start;
+		align-items: center;
 		justify-content: start;
 		flex-direction: row;
 		margin-block: 1em;

@@ -31,7 +31,7 @@
 			<Link {data} />
 		{/each}
 	</Sankey>
-	<!-- <SankeyInspector /> -->
+	<SankeyInspector />
 </div>
 
 <style>
