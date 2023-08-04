@@ -43,8 +43,11 @@
 <style>
 	path {
 		z-index: -1;
-		stroke: rgba(7, 60, 31, 0.7);
+		stroke: rgba(44, 61, 171, 0.3);
 		stroke-width: var(--path-width);
 		fill: none;
+	}
+	path:hover {
+		stroke: rgba(44, 61, 171, 0.6);
 	}
 </style>
