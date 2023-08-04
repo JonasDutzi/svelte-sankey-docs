@@ -14,7 +14,8 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$stores: 'src/lib/stores/index.ts',
-			$types: 'src/lib/types/index.ts'
+			$types: 'src/lib/types/index.ts',
+			$helper: 'src/lib/helper.ts'
 		}
 	}
 };

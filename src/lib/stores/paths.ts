@@ -19,6 +19,7 @@ const createPathsStore = () => {
 		const paths = new Map<string, Path>();
 		if ($linksStore?.size > 0) {
 			const targetPositionMap = new Map<SankeyKey, number>();
+			const sourcePositionMap = new Map<SankeyKey, number>();
 			for (const [linkKey, linkData] of $linksStore.entries()) {
 				const sourceAnchor = $anchorsStore.get(linkData.source);
 				const targetAnchor = $anchorsStore.get(linkData.target);
@@ -26,7 +27,7 @@ const createPathsStore = () => {
 					paths.set(linkKey, {
 						sourcePosition: {
 							x: sourceAnchor?.positionX,
-							y: sourceAnchor?.positionY
+							y: sourceAnchor?.positionY + (sourcePositionMap.get(linkData.source) ?? 0)
 						},
 						targetPosition: {
 							x: targetAnchor?.positionX,
@@ -36,10 +37,18 @@ const createPathsStore = () => {
 					if (targetPositionMap.has(linkData.target)) {
 						targetPositionMap.set(
 							linkData.target,
-							linkData.value + targetPositionMap.get(linkData.target!)
+							linkData.value + targetPositionMap.get(linkData.target)
 						);
 					} else {
 						targetPositionMap.set(linkData.target, linkData.value);
+					}
+					if (sourcePositionMap.has(linkData.source)) {
+						sourcePositionMap.set(
+							linkData.source,
+							linkData.value + sourcePositionMap.get(linkData.source)
+						);
+					} else {
+						sourcePositionMap.set(linkData.source, linkData.value);
 					}
 				}
 			}

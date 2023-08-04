@@ -20,7 +20,7 @@
 		{#each sankeyData.data as data}
 			<ColumnContent {data}>
 				{#each data.rows as row}
-					<div style="font-weight: 600;">{row.rowLabel}</div>
+					<div class="row-label">{row.rowLabel}</div>
 					{#each row.items as item}
 						<Item {item} />
 					{/each}
@@ -31,7 +31,7 @@
 			<Link {data} />
 		{/each}
 	</Sankey>
-	<SankeyInspector />
+	<!-- <SankeyInspector /> -->
 </div>
 
 <style>
@@ -39,5 +39,9 @@
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
+	}
+	.row-label {
+		font-weight: 700;
+		font-size: 1.025rem;
 	}
 </style>

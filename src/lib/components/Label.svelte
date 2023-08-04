@@ -2,9 +2,15 @@
 	export let label: string;
 </script>
 
-<div class="sv-sankey__label">{label}</div>
+<div class="sv-sankey__label">
+	<p>{label}</p>
+</div>
 
 <style>
+	p {
+		margin: 0;
+		padding: 0;
+	}
 	.sv-sankey__label {
 		margin-inline: 0.5rem;
 		position: relative;

@@ -9,7 +9,7 @@ export const sankeyData: SankeyData = {
 				{
 					rowLabel: 'Product',
 					items: [
-						{ id: 'fluor', label: 'Fluor' },
+						{ id: 'flour', label: 'Flour' },
 						{ id: 'biscuit', label: 'Biscuit' }
 					]
 				},
@@ -45,7 +45,7 @@ export const sankeyData: SankeyData = {
 	],
 	links: [
 		{
-			source: 'fluor',
+			source: 'flour',
 			target: 'semi_finished_good',
 			value: 5
 		},
