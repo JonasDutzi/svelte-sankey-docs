@@ -34,7 +34,9 @@
 	$: bezierCurve = bezierCurveTo(x1, y1, x2, y2);
 
 	const bezierCurveTo = (x1: number, y1: number, x2: number, y2: number): string => {
-		return `M${x1},${y1}, C${(x1 + x2) / 2},${y1}, ${x1},${y2}  ${x2},${y2}`;
+		const xMove = 2;
+		const xFactor = (x1 + x2) * (1 / xMove);
+		return `M${x1},${y1}, C${xFactor},${y1}, ${xFactor},${y2}  ${x2},${y2}`;
 	};
 </script>
 
