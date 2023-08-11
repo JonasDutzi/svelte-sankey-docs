@@ -1,11 +1,11 @@
 <script lang="ts">
-	import Item from '$lib/components/Item.svelte';
-	import ColumnHeader from '$lib/components/ColumnHeader.svelte';
-	import ColumnContent from '$lib/components/ColumnContent.svelte';
-	import SankeyInspector from '$lib/components/SankeyInspector.svelte';
-	import Link from '$lib/components/Link.svelte';
-	import { sankeyData } from '$lib/testdata/data_inconsistent.ts';
-	import Sankey from '$lib/components/Sankey.svelte';
+	import Item from "$lib/components/Item.svelte";
+	import ColumnHeader from "$lib/components/ColumnHeader.svelte";
+	import ColumnContent from "$lib/components/ColumnContent.svelte";
+	import SankeyInspector from "$lib/components/SankeyInspector.svelte";
+	import Link from "$lib/components/Link.svelte";
+	import { sankeyData } from "$lib/testdata/data.ts";
+	import Sankey from "$lib/components/Sankey.svelte";
 </script>
 
 <div>
@@ -13,7 +13,7 @@
 		{#each sankeyData.data as data}
 			<ColumnHeader>
 				<div style="font-size: clamp(1.125rem, 2vw, 1.5rem); font-weight: bold; margin-block: 1rem">
-					{data.columnLabel === 'root' ? data?.rows?.[0].items?.[0]?.label : data.columnLabel}
+					{data.columnLabel === "root" ? data?.rows?.[0].items?.[0]?.label : data.columnLabel}
 				</div>
 			</ColumnHeader>
 		{/each}

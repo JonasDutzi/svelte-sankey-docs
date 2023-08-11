@@ -9,7 +9,7 @@
 	onMount(() => {
 		if (!data.source || !data.target) {
 			logError(
-				`Sankey Link must have a source and a target - source: ${data.source} target: ${data.target}`
+				`Sankey Link must have a source and a target - source: "${data.source}" target: "${data.target}"`
 			);
 		}
 		linksStore.add(data);

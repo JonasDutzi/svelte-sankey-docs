@@ -1,3 +1,4 @@
+import { logError } from '$helper';
 import type { SankeyColumn, SankeyKey } from '$types';
 import { writable } from 'svelte/store';
 
@@ -8,7 +9,16 @@ const createDataStore = () => {
 	return {
 		subscribe,
 		addColumn: (column: SankeyColumn) =>
-			update((currentColumns) => currentColumns.set(column.id, column)),
+			update((currentColumns) => {
+				if (currentColumns.has(column.id)) {
+					logError(
+						`Sankey Column id must be unique. Column with id "${column.id}" already exists.`
+					);
+					return currentColumns;
+				} else {
+					return currentColumns.set(column.id, column);
+				}
+			}),
 		removeColumn: (column: SankeyColumn) =>
 			update((currentColumns) => {
 				currentColumns.delete(column.id);

@@ -1,6 +1,7 @@
 import { derived } from 'svelte/store';
 import { dataStore, linksStore } from '$stores';
 import type { SankeyKey } from '$types';
+import { logError } from '$helper';
 
 export type SankeyItem = {
 	id: SankeyKey;
@@ -36,15 +37,19 @@ const createItemsStore = () => {
 								sources.push({ id: link.source, value: link.value });
 							}
 						}
-						items.set(item.id, {
-							id: item.id,
-							label: item.label,
-							columnKey,
-							sources,
-							targets,
-							sourcesTotalValue: getEdgeTotalValue(sources),
-							targetsTotalValue: getEdgeTotalValue(targets)
-						});
+						if (items.has(item.id)) {
+							logError(`Sankey Item id must be unique. Item with id "${item.id}" already exists.`);
+						} else {
+							items.set(item.id, {
+								id: item.id,
+								label: item.label,
+								columnKey,
+								sources,
+								targets,
+								sourcesTotalValue: getEdgeTotalValue(sources),
+								targetsTotalValue: getEdgeTotalValue(targets)
+							});
+						}
 					}
 				}
 			}
@@ -66,7 +71,8 @@ const getEdgeTotalValue = (edges: Array<SankeyEdge>): number => {
 
 const sumUpItemValues = (edges: Array<SankeyEdge>) => {
 	const sum = edges.reduce((sumValue, edge) => {
-		return (sumValue += edge.value);
+		sumValue += edge.value;
+		return sumValue;
 	}, 0);
 	return sum;
 };
