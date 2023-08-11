@@ -1,3 +1,5 @@
+<svelte:options tag="svelte-sankey-columns" />
+
 <script lang="ts">
 	export let data: any;
 </script>

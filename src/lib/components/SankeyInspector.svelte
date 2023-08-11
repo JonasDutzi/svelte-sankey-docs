@@ -1,6 +1,13 @@
 <script lang="ts">
-	import { itemsStore } from '$lib/stores/items.ts';
-	import { anchorsStore, linksStore, dataStore, pathsStore, wrapperStore } from '$stores';
+	import { itemsStore } from "$lib/stores/items.ts";
+	import {
+		anchorsStore,
+		linksStore,
+		dataStore,
+		pathsStore,
+		wrapperStore,
+		settingsStore
+	} from "$stores";
 </script>
 
 <div class="inspector">
@@ -39,6 +46,10 @@
 	<div>
 		<b>Wrapper:</b>
 		<div>{JSON.stringify($wrapperStore)}</div>
+	</div>
+	<div>
+		<b>Settings:</b>
+		<div>{JSON.stringify($settingsStore)}</div>
 	</div>
 </div>
 

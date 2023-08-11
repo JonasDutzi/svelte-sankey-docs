@@ -16,7 +16,7 @@
 		position: relative;
 	}
 	.sv-sankey__label::before {
-		content: '';
+		content: "";
 		position: absolute;
 		inset: 0;
 	}

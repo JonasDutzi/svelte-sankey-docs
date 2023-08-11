@@ -1,12 +1,19 @@
 <script lang="ts">
-	import { linksStore, pathsStore, wrapperStore } from '$lib/stores/index.ts';
-	import { Axis } from '$types';
-	import SankeyLine from './SankeyLine.svelte';
+	import { pathsStore, wrapperStore, settingsStore } from "$lib/stores/index.ts";
+	import SankeyLine from "./SankeyLine.svelte";
 
 	export let showHeaders: boolean = false;
+	export let maxBoxHeight: number;
 
 	let wrapperRef: HTMLDivElement;
 	export let minPathWidth: number = 1;
+
+	$: {
+		if (maxBoxHeight) {
+			$settingsStore.maxBoxHeight = maxBoxHeight;
+			$settingsStore.minPathWidth = minPathWidth;
+		}
+	}
 
 	$: {
 		if (wrapperRef) {
@@ -23,7 +30,7 @@
 	bind:this={wrapperRef}
 	bind:clientWidth={$wrapperStore.width}
 	bind:clientHeight={$wrapperStore.height}
-	style:--grid-auto-flow={showHeaders ? 'row' : 'column'}
+	style:--grid-auto-flow={showHeaders ? "row" : "column"}
 	class="sv-sankey__wrapper"
 >
 	<svg width={$wrapperStore.width} height={$wrapperStore.height}>

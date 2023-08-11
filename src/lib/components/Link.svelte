@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { logError } from '$helper';
-	import { linksStore } from '$stores';
-	import type { SankeyLink } from '$types';
-	import { onDestroy, onMount } from 'svelte';
+	import { logError } from "$helper";
+	import { linksStore } from "$stores";
+	import type { SankeyLink } from "$types";
+	import { onDestroy, onMount } from "svelte";
 
 	export let data: SankeyLink;
 

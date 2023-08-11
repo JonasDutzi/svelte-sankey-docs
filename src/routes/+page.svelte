@@ -2,14 +2,13 @@
 	import Item from "$lib/components/Item.svelte";
 	import ColumnHeader from "$lib/components/ColumnHeader.svelte";
 	import ColumnContent from "$lib/components/ColumnContent.svelte";
-	import SankeyInspector from "$lib/components/SankeyInspector.svelte";
 	import Link from "$lib/components/Link.svelte";
-	import { sankeyData } from "$lib/testdata/data.ts";
+	import { sankeyData } from "$lib/testdata/data.bigger.ts";
 	import Sankey from "$lib/components/Sankey.svelte";
 </script>
 
 <div>
-	<Sankey showHeaders>
+	<Sankey showHeaders maxBoxHeight={50}>
 		{#each sankeyData.data as data}
 			<ColumnHeader>
 				<div style="font-size: clamp(1.125rem, 2vw, 1.5rem); font-weight: bold; margin-block: 1rem">
@@ -31,7 +30,7 @@
 			<Link {data} />
 		{/each}
 	</Sankey>
-	<SankeyInspector />
+	<!-- <SankeyInspector /> -->
 </div>
 
 <style>

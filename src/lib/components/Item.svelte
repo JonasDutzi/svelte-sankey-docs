@@ -1,15 +1,15 @@
 <script lang="ts">
-	import type { SankeyItem } from '$types';
-	import { onMount } from 'svelte';
-	import Anchor from './Anchor.svelte';
-	import Label from './Label.svelte';
-	import { logError } from '$helper';
+	import type { SankeyItem } from "$types";
+	import { onMount } from "svelte";
+	import Anchor from "./Anchor.svelte";
+	import Label from "./Label.svelte";
+	import { logError } from "$helper";
 
 	export let item: SankeyItem;
 
 	onMount(() => {
 		if (!item.id) {
-			logError('Every Sankey Item must have a key');
+			logError("Every Sankey Item must have a key");
 		}
 	});
 </script>

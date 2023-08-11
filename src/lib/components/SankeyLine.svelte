@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { linksStore } from '$lib/stores/index.ts';
-	import type { Path } from '$lib/stores/paths.ts';
-	import { Axis } from '$types';
+	import { linksStore } from "$lib/stores/index.ts";
+	import type { Path } from "$lib/stores/paths.ts";
+	import { Axis } from "$types";
 
 	export let key: string;
 	export let data: Path;
