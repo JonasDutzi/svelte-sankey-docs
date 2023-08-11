@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { SankeyKey } from '$types';
-	import { onDestroy } from 'svelte';
-	import { anchorsStore, wrapperStore, itemsStore } from '$stores';
+	import type { SankeyKey } from "$types";
+	import { onDestroy } from "svelte";
+	import { anchorsStore, wrapperStore, itemsStore } from "$stores";
 
 	let anchorRef: HTMLDivElement;
 	export let id: SankeyKey;
@@ -11,7 +11,7 @@
 	$: {
 		let item = $itemsStore.get(id);
 		if (item) {
-			anchorHeight = item.sourcesTotalValue > 0 ? item.sourcesTotalValue : item.targetsTotalValue;
+			anchorHeight = Math.max(item.sourcesTotalValue, item.targetsTotalValue);
 		}
 	}
 

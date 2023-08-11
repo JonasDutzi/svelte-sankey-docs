@@ -4,7 +4,7 @@
 	import ColumnContent from "$lib/components/ColumnContent.svelte";
 	import SankeyInspector from "$lib/components/SankeyInspector.svelte";
 	import Link from "$lib/components/Link.svelte";
-	import { sankeyData } from "$lib/testdata/data.ts";
+	import { sankeyData } from "$lib/testdata/data_negativevalues.ts";
 	import Sankey from "$lib/components/Sankey.svelte";
 </script>
 
@@ -31,7 +31,7 @@
 			<Link {data} />
 		{/each}
 	</Sankey>
-	<!-- <SankeyInspector /> -->
+	<SankeyInspector />
 </div>
 
 <style>
