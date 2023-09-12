@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Sankey, ColumnHeader, ColumnContent, Item, Link } from "svelte-sankey";
+	import { SankeyChart } from "svelte-sankey";
 	import type { SankeyData } from "svelte-sankey";
 	const sankeyData: SankeyData = {
 		data: [
@@ -141,26 +141,5 @@
 
 <main>
 	<h1>Documentation of Svelte Sankey</h1>
-	<Sankey showHeaders maxBoxHeight={50}>
-		{#each sankeyData.data as data}
-			<ColumnHeader>
-				<div style="font-size: clamp(1.125rem, 2vw, 1.5rem); font-weight: bold; margin-block: 1rem">
-					{data.columnLabel === "root" ? data?.rows?.[0].items?.[0]?.label : data.columnLabel}
-				</div>
-			</ColumnHeader>
-		{/each}
-		{#each sankeyData.data as data}
-			<ColumnContent {data}>
-				{#each data.rows as row}
-					<div class="row-label">{row.rowLabel}</div>
-					{#each row.items as item}
-						<Item {item} />
-					{/each}
-				{/each}
-			</ColumnContent>
-		{/each}
-		{#each sankeyData.links as data}
-			<Link {data} />
-		{/each}
-	</Sankey>
+	<SankeyChart showheaders={true} chartdata={sankeyData} />
 </main>

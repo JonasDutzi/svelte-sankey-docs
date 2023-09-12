@@ -48,6 +48,6 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"svelte-sankey": "^0.0.12"
+		"svelte-sankey": "^0.0.13"
 	}
 }
