@@ -5,6 +5,14 @@ import catppuccin from "@catppuccin/starlight";
 
 export const BASE = "/svelte-sankey-docs";
 
+const ALL_COMPONENTS = [
+  "Sankey",
+  "ColumnContent",
+  "Item",
+  "Anchor",
+  "AnchorContent",
+];
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://jonasdutzi.github.io",
@@ -34,14 +42,18 @@ export default defineConfig({
       sidebar: [
         {
           label: "Guides",
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
-          ],
+          items: [{ label: "Getting Started", slug: "guides/getting-started" }],
         },
         {
-          label: "Reference",
-          autogenerate: { directory: "reference" },
+          label: "Components",
+          items: ALL_COMPONENTS.map((component) => ({
+            label: component,
+            slug: `components/${component.toLowerCase()}`,
+          })),
+        },
+        {
+          label: "References",
+          autogenerate: { directory: "references" },
         },
       ],
     }),

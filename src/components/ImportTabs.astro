@@ -1,0 +1,21 @@
+---
+import { Tabs, TabItem, Code } from "@astrojs/starlight/components";
+
+interface Props {
+  componentName: string;
+}
+
+const { componentName } = Astro.props;
+---
+
+<Tabs>
+  <TabItem label="Svelte" icon="seti:svelte">
+    <Code lang="ts" code=`import { ${componentName} } from "svelte-sankey";` />
+  </TabItem>
+  <TabItem label="Web Component" icon="puzzle">
+    <Code lang="ts" code=`import "svelte-sankey/webc/${componentName}";` />
+  </TabItem>
+  <TabItem label="SAPUI5">
+    <Code lang="ts" code=`import Sankey from "com/sankey/${componentName}";` />
+  </TabItem>
+</Tabs>

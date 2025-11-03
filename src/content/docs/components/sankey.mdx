@@ -1,0 +1,50 @@
+---
+title: Sankey Component
+description: The main component that acts as a wrapper for the entire Sankey diagram, providing the foundation for all other components
+---
+
+## Sankey
+
+The Sankey component is the main component that every Sankey diagram needs to have. It acts as a wrapper for the whole diagram, providing the essential structure and context for all other components like nodes and links. This component manages the overall layout to render the svg paths.
+
+### Usage
+
+import ImportTabs from '../../../components/ImportTabs.astro';
+
+<ImportTabs componentName="Sankey"/>
+
+### Properties
+
+#### minpathheight
+
+| | |
+|---|---|
+| Description | Sets the minimum height for paths in the diagram in pixel. Svelte-sankey automatically scales the visualization of each item and link based on the minpathheight and maxpathheight |
+| Type | `number` |
+| Default Value | `1` |
+
+#### maxpath­height
+
+| | |
+|---|---|
+| Description | Sets the maximum height for paths in the diagram in pixel. Svelte-sankey scales the visualization of each item and link based on the minpathheight and maxpathheight
+| Type | `number` |
+| Default Value | `32` |
+
+#### highlightpaths
+
+| | |
+|---|---|
+| Description | When set to `true` and hovering over an item, all paths connected to that item will be highlighted. This helps to visually trace the flow of data through the diagram.
+| Type | `boolean` |
+| Default Value | `true` |
+
+### Events
+
+#### onPathClick
+
+| | |
+|---|---|
+| Description | Fired when a path in the Sankey diagram is clicked. The event provides details of the clicked path in `event.detail`
+| Type | `CustomEvent<{ sourceItemId: string; targetItemId: string; value: number; }>` |
+

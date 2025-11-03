@@ -1,0 +1,214 @@
+---
+title: Getting Started
+description: Learn how to use the svelte-sankey library in your project.
+---
+
+import { Tabs, TabItem , Code, Aside} from '@astrojs/starlight/components';
+
+Get started with svelte-sankey by installing it in your project. 
+
+## Install svelte-sankey
+
+<Tabs syncKey="package-managers">
+<TabItem label="npm">
+
+```bash
+npm install svelte-sankey
+```
+
+</TabItem>
+<TabItem label="pnpm">
+
+```bash
+pnpm add svelte-sankey
+```
+
+</TabItem>
+<TabItem label="yarn">
+
+```bash
+yarn add svelte-sankey
+```
+
+</TabItem>
+</Tabs>
+
+## Basic Usage
+
+After installation, you're ready to start creating beautiful Sankey diagrams.
+
+### Data Structure
+To create a Sankey diagram, you need to structure your data in a specific format. The data consists of four main hierarchical levels:
+
+**columns** --> **rows** --> **items** --> **links**
+
+- **columns**: Represent the vertical sections of the Sankey diagram.
+- **rows**: Each column contains at least one row. You can use rows to group items within a column.
+- **items**: Each row contains one or more items. Items are the nodes in the Sankey diagram.
+- **links**: 
+Each item has links to other items in subsequent columns. The link between items is determined by the **id** field of each item.
+
+Below is an example of a simple data structure for a sankey diagram. It demonstrates how to structure your data and utilize the main components mentioned above. 
+
+<details open>
+<summary>sankeyData.ts</summary>
+
+```ts
+export const sankeyData: SankeyData = [
+	{
+		id: "column1",
+		columnLabel: "Column 1",
+		rows: [
+			{
+				rowLabel: "Row 1",
+				items: [
+					{
+						id: "item1",
+						label: "Item 1",
+						links: [
+							{
+								target: "item4",
+								value: 5
+							}
+						]
+					},
+					{
+						id: "item2",
+						label: "Item 2",
+						links: [
+							{
+								target: "item4",
+								value: 3
+							}
+						]
+					}
+				]
+			},
+			{
+				rowLabel: "Row 2",
+				items: [
+					{
+						id: "item3",
+						label: "Item 3",
+						links: [
+							{
+								target: "item4",
+								value: 8
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		id: "column2",
+		columnLabel: "Column 2",
+		rows: [
+			{
+				rowLabel: "Row 1",
+				items: [
+					{
+						id: "item4",
+						label: "Item 4",
+						links: [
+							{
+								target: "item5",
+								value: 8
+							},
+							{
+								target: "item6",
+								value: 8
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		id: "column3",
+		columnLabel: "Column 3",
+		rows: [
+			{
+				rowLabel: "Row 1",
+				items: [
+					{
+						id: "item5",
+						label: "Item 5"
+					},
+					{
+						id: "item6",
+						label: "Item 6"
+					}
+				]
+			}
+		]
+	}
+];
+```
+</details>
+
+<Aside type="tip">
+This is just a very basic example to get you started.
+
+The sankey data structure is flexible and provides various options to customize the appearance and behavior of the Sankey diagram. For more details, check out the [Sankey Data structure documentation](../../guides/sankey-data-structure).
+
+</Aside>
+
+Switch between the tabs below to see how to import and use the components in different frameworks/environments.
+
+<Tabs>
+  <TabItem label="Svelte" icon="seti:svelte">
+   ```svelte
+    <script lang="ts">
+        import { Sankey, ColumnContent, Item, Anchor, AnchorContent } from 'svelte-sankey';
+        import type { SankeyData } from 'svelte-sankey';
+        import { sankeyData } from './sankeyData.ts';
+        
+    </script>
+    
+    <Sankey 
+        minpathheight={1}
+        maxpathheight={32}
+        onPathClick={(event) => console.log("path clicked", event)}
+        {#each sankeyData as column, columnIndex}
+            <ColumnContent {column} ariaLabel={colLabel}>
+                <div>
+                    {column.columnLabel}
+                </div>
+                {#each column.rows as row, rowIndex}
+                    <div>
+                        <div>{row.rowLabel}</div>
+                        {#each row.items as item}
+                            <Item {item}>
+                                    <Anchor {item} />
+                                    <AnchorContent
+                                        {item}
+                                        onItemClick={(event) => console.log("item clicked", event)}
+                                    >
+                                        <div>
+                                            {item.label}
+                                        </div>
+                                    </AnchorContent>
+                            </Item>
+                        {/each}
+                    </div>
+                {/each}
+            </ColumnContent>
+        {/each}
+    </Sankey>
+    ``` 
+  </TabItem>
+  <TabItem label="Web Component" icon="puzzle">
+    
+  </TabItem>
+  <TabItem label="SAPUI5">
+    
+  </TabItem>
+</Tabs>
+
+## Next steps
+
+Check out the [component documentation](../../components/sankey) to learn about the available components and their properties.
+
